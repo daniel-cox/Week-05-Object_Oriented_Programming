@@ -66,7 +66,7 @@ class bandMenu {
           `);
   }
   //TODO -2)Add ability to create a band
-  //NOTE - Creates a prompt for user input, and pushes to the bands array an instance of the bands class, and passes the user input into the 'bandName' property.
+  //NOTE - Creates a prompt for user input and pushes to the bands array an instance of the bands class, and passes the user input into the 'bandName' property.
   createBand() {
     let userInputValue = prompt("Enter name of the band:");
     this.Bands.push(new Band(userInputValue));
@@ -82,17 +82,18 @@ class bandMenu {
   }
 
   //TODO Add the ability to display all bands
-  //NOTE - Creates an empty string to store the bands array,
+  //NOTE - Creates an empty string to store the name and index of the band(s). The information is then displayed in an alert popup.
   displayAllBands() {
     let allBands = "";
     for (let index = 0; index < this.Bands.length; index++) {
       // Add each band to the allbands container
-      allBands += "\n" + index + "-" + " " + this.Bands[index].bandName;
+      allBands += "\n" + index + " - " + this.Bands[index].bandName; //Takes the index of a specifc band from the bands array.
     }
     alert(allBands);
   }
 
   //Band Menu UI
+  //NOTE - creates a Simple UI when adding musicians to a band.
   bandMenuUI(musicianListing) {
     return prompt(`
     0) back
@@ -103,20 +104,22 @@ class bandMenu {
   }
 
   //TODO -3) Ability to View a band
+  //NOTE - Created a blank string that will be used to populate the
   viewBand() {
     let allBands = "";
     for (let index = 0; index < this.Bands.length; index++) {
       // Add each band to the allbands container
-      allBands += "\n" + index + "-" + " " + this.Bands[index].bandName;
+      allBands += "\n" + index + " - " + this.Bands[index].bandName;
     }
-
+    //NOTE - The above code is populating the index number and the index of the created band into the 'allBands' string
     let index = prompt(
       "Enter the index of the band you would like to view: \n" + allBands
     );
+    //NOTE - if the index is between 0 and the index of the number of bands, the band is added to the selectedBand variable.
     if (index > -1 && index < this.Bands.length) {
       this.selectedBand = this.Bands[index];
       let description = "Band Name: " + this.selectedBand.bandName + "\n";
-
+      //NOTE - The for loop will iterate over the musician array of the selectedBand. After each iteration a string will be added to the description variable.
       for (let i = 0; i < this.selectedBand.Musician.length; i++) {
         description +=
           i +
@@ -127,6 +130,7 @@ class bandMenu {
           "\n";
       }
       //TODO create selection menu
+      //NOTE - the selection variable assignes the value returned by 'bandmenuUI'. Then the description variable is passes as an argument of 'baandMenuUI'
       let selection = this.bandMenuUI(description);
       switch (selection) {
         case "1":
@@ -138,7 +142,7 @@ class bandMenu {
       }
     }
   }
-
+  //NOTE - Creates a prompt for the user to enter the name of the musician and the instrument they play. Then a new musician is added to the musician array, which is a property of selectedBand.
   //TODO - 4) Ability to create a musician
   createMusician() {
     let musicianName = prompt("Enter the name of the musician:");
@@ -146,6 +150,7 @@ class bandMenu {
     this.selectedBand.Musician.push(new Musician(musicianName, instrument));
     console.log("selectedband log", this.selectedBand);
   }
+  //NOTE - You are prompted to enter an index number, if the index exists in musician array, it will be removed using the splice method to select the index number the user input, and removing 1 element.
   //TODO -4) Ability to Delete a musician
   deleteMusician() {
     let index = prompt("Enter the index of the musician you wish to delete:");
