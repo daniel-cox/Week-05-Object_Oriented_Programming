@@ -142,16 +142,18 @@ class bandMenu {
       }
     }
   }
-  //NOTE - Creates a prompt for the user to enter the name of the musician and the instrument they play. Then a new musician is added to the musician array, which is a property of selectedBand.
+
   //TODO - 4) Ability to create a musician
+  //NOTE - Creates a prompt for the user to enter the name of the musician and the instrument they play. Then a new musician is added to the musician array, which is a property of selectedBand.
   createMusician() {
     let musicianName = prompt("Enter the name of the musician:");
     let instrument = prompt("Enter the instrument the musican plays:");
     this.selectedBand.Musician.push(new Musician(musicianName, instrument));
     console.log("selectedband log", this.selectedBand);
   }
-  //NOTE - You are prompted to enter an index number, if the index exists in musician array, it will be removed using the splice method to select the index number the user input, and removing 1 element.
   //TODO -4) Ability to Delete a musician
+  //NOTE - You are prompted to enter an index number, if the index exists in musician array, it will be removed using the splice method to select the index number the user input, and removing 1 element.
+
   deleteMusician() {
     let index = prompt("Enter the index of the musician you wish to delete:");
     console.log(index < -1);
