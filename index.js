@@ -24,12 +24,13 @@ class Band {
 }
 //SECTION - Music Class & Menu Logic
 //TODO - 1) Create a class for the menu logic
-//NOTE - Creates a class to pass the bands in an array, & creates menu options to create,view, & delete bands. Each band can also contain multiple musicians
+//NOTE - Creates a class to pass the bands in an array
 class bandMenu {
   constructor() {
     this.Bands = [];
     this.selectedBand = null;
   }
+  //NOTE - creates menu options to create,view, & delete bands using a switch statement.
   StartMenu() {
     let selection = this.startMenuUI();
     while (selection != 0) {
@@ -66,7 +67,7 @@ class bandMenu {
           `);
   }
   //TODO -2)Add ability to create a band
-  //NOTE - Creates a prompt for user input and pushes to the bands array an instance of the bands class, and passes the user input into the 'bandName' property.
+  //NOTE - Creates a prompt for user input and pushes to the bands array which is an instance of the bands class, and passes the user input into the 'bandName' property.
   createBand() {
     let userInputValue = prompt("Enter name of the band:");
     this.Bands.push(new Band(userInputValue));
@@ -120,6 +121,8 @@ class bandMenu {
       this.selectedBand = this.Bands[index];
       let description = "Band Name: " + this.selectedBand.bandName + "\n";
       //NOTE - The for loop will iterate over the musician array of the selectedBand. After each iteration a string will be added to the description variable.
+      console.log(this.selectedBand);
+      console.log(this.selectedBand.Musician);
       for (let i = 0; i < this.selectedBand.Musician.length; i++) {
         description +=
           i +
@@ -130,7 +133,7 @@ class bandMenu {
           "\n";
       }
       //TODO create selection menu
-      //NOTE - the selection variable assignes the value returned by 'bandmenuUI'. Then the description variable is passes as an argument of 'baandMenuUI'
+      //NOTE - the selection variable assignes the value returned by 'bandmenuUI'. Then the description variable is passes as an argument of 'bandMenuUI'
       let selection = this.bandMenuUI(description);
       switch (selection) {
         case "1":
